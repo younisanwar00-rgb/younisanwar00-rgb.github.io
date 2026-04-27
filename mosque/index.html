@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سیستەمی مزگەوتی ڕانیە</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="iqamah-overlay" class="hidden">
+        <div class="iqamah-flex-container">
+            <div class="iqamah-box">
+                <h2>ئامادەبە بۆ قامەتی <span id="iqamah-prayer-name" class="glow-text">...</span></h2>
+                <div id="iqamah-large-timer">00:00</div>
+            </div>
+            <div class="silence-box">
+                <div class="icon-phone">📱🔇</div>
+                <h1>تکایە مۆبایلەکەت بێدەنگ بکە</h1>
+                <p>خۆت ئامادە بکە بۆ نوێژ و گوێڕایەڵی خودا</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="post-azkar-overlay" class="hidden">
+        <div class="post-azkar-box" style="max-width: 98%; padding: 15px;">
+            <h2 style="font-size: 3rem; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">زیکرەکانی دوای نوێژ</h2>
+            
+            <div class="azkar-grid" style="grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                
+                <div class="zikr-item quranic-text" style="font-size: 1.9rem; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        أَسْتَغْفِرُ اللَّهَ <span style="color:var(--gold);">(٣ جار)</span> <br> 
+                        اللَّهُمَّ أَنْتَ السَّلَامُ، وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ.
+                    </div>
+                    <span style="color:var(--gold); display:block; margin-top:10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ.</span>
+                </div>
+                
+                <div class="zikr-item quranic-text" style="font-size: 1.8rem; padding: 15px;">
+                    لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، اللَّهُمَّ لَا مَانِعَ لِمَا أَعْطَيْتَ، وَلَا مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الْجَدِّ مِنْكَ الْجَدِّ.
+                </div>
+                
+                <div class="zikr-item quranic-text" style="font-size: 1.7rem; padding: 15px;">
+                    لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ، لَا إِلَهَ إِلَّا اللَّهُ، وَلَا نَعْبُدُ إِلَّا إِيَّاهُ، لَهُ النِّعْمَةُ وَلَهُ الْفَضْلُ وَلَهُ الثَّنَاءُ الْحَسَنُ، لَا إِلَهَ إِلَّا اللَّهُ مُخْلِصِينَ لَهُ الدِّينَ وَلَوْ كَرِهَ الْكَافِرُونَ.
+                </div>
+                
+                <div class="zikr-item full-width quranic-text" style="grid-column: span 3; font-size: 2.6rem; text-align: center; padding: 15px; background: rgba(0,0,0,0.6);">
+                    <span style="color:var(--gold); font-weight: bold;">سُبْحَانَ اللَّهِ (٣٣) ، الْحَمْدُ لِلَّهِ (٣٣) ، اللَّهُ أَكْبَرُ (٣٣)</span><br>
+                    <span style="font-size: 2.2rem;">لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ.</span>
+                </div>
+
+                <div class="zikr-item quranic-text" style="grid-column: span 2; font-size: 1.8rem; padding: 15px;">
+                    <b style="color:var(--gold); font-size:1.9rem; display: inline-block; margin-bottom: 5px;">ئایەتەلکورسی و (الإخلاص، الفلق، الناس)</b><br>
+                    اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ.<br>
+                    <span class="zikr-note" style="margin-top:8px; display: block; font-size: 1.3rem;">تێبینی: سوورەتەکان دوای بەیانی و ئێوارە (٣ جار) دەخوێندرێن. هەروەها: رَبِّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ.</span>
+                </div>
+                
+                <div class="zikr-item quranic-text" style="font-size: 1.6rem; padding: 15px; display: flex; flex-direction: column; justify-content: center;">
+                    <div>
+                        <b style="color:var(--gold); font-size:1.7rem;">تایبەت بە بەیانی و ئێوارە:</b><br>
+                        لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ. <span style="color:var(--gold);">(١٠ جار)</span>
+                    </div>
+                    <div style="margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;">
+                        <b style="color:var(--gold); font-size:1.7rem;">تەنها دوای بەیانی:</b><br>
+                        اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="friday-banner" class="hidden">
+        ✨ ڕۆژی هەینییە! سەڵاوات لەسەر پێغەمبەر (ﷺ) و خوێندنی سوورەتی الكهف لەبیر مەکە ✨
+    </div>
+
+    <div class="main-container">
+        <div class="top-bar glass-panel">
+            <div id="zikr-text">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</div>
+        </div>
+
+        <div class="middle-section">
+            <div class="side-panel right-panel glass-panel">
+                <div class="panel-section">
+                    <h2>فەرموودەی پێغەمبەر (ﷺ)</h2>
+                    <div id="hadith-content">
+                        <p class="h-text" id="h-text">باردەبێت...</p>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="panel-section">
+                    <h2>شێوازی نوێژی مردوو</h2>
+                    <div class="murdū-steps">
+                        <div><b>تەکبیری ١:</b> سورەتی (الفاتحة) بە بێدەنگی.</div>
+                        <div><b>تەکبیری ٢:</b> سەڵاواتی ئیبراهیمی.</div>
+                        <div><b>تەکبیری ٣:</b> پاڕانەوە بۆ مردووەکە.
+                            <span class="dua-murdu">"اللَّهُمَّ اغْفِرْ لَهُ وَارْحَمْهُ وَعَافِهِ وَاعْفُ عَنْهُ"</span>
+                        </div>
+                        <div><b>تەکبیری ٤:</b> دوعا و سەلامدانەوە.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel glass-panel">
+                
+                <div class="weather-badge glass-panel" id="weather-widget">
+                    <span id="temp">--°C</span>
+                </div>
+
+                <div class="clock-wrapper" dir="ltr">
+                    <span id="clock">00:00</span>
+                    <span id="seconds-display">:00</span>
+                </div>
+                <div class="countdown-container" id="countdown-box">
+                    <span id="countdown-label">ماوە بۆ بانگی</span> <span id="next-prayer-name" class="glow-text">...</span>: <span id="countdown-timer">00:00:00</span>
+                </div>
+                
+                <div class="day-badge" id="day-of-week">باردەبێت...</div>
+                
+                <div class="dates">
+                    <span id="hijri"></span>
+                    <br>
+                    <span id="date-gregorian" class="gregorian-date"></span>
+                    <br>
+                    <span id="date-kurdish" class="kurdish-date"></span>
+                </div>
+            </div>
+
+            <div class="side-panel left-panel glass-panel">
+                <div class="panel-section" style="flex: 1.5;">
+                    <h2>ئایەتی پیرۆز</h2>
+                    <div id="quran-content">
+                        <div class="q-arabic" id="q-ar">باردەبێت...</div>
+                        <div class="q-kurdish" id="q-ku"></div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="panel-section" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                    <h2>أسماء الله الحسنى</h2>
+                    <div id="asma-text">اللَّهُ</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="prayer-times">
+            <div class="prayer-card glass-panel" id="p1" data-time="" data-name="بەیانی" data-wait="20">
+                <span>بەیانی</span><b id="time-fajr">--:--</b><div class="iqamah-badge">قامەت: +٢٠ خولەک</div>
+            </div>
+            <div class="prayer-card glass-panel" id="p2" data-time="" data-name="خۆرهەڵات" data-wait="0">
+                <span>خۆرهەڵات</span><b id="time-sunrise">--:--</b><div class="iqamah-badge" style="opacity:0;">--</div>
+            </div>
+            <div class="prayer-card glass-panel" id="p3" data-time="" data-name="نیوەڕۆ" data-wait="10">
+                <span>نیوەڕۆ</span><b id="time-dhuhr">--:--</b><div class="iqamah-badge">قامەت: +١٠ خولەک</div>
+            </div>
+            <div class="prayer-card glass-panel" id="p4" data-time="" data-name="عەسر" data-wait="10">
+                <span>عەسر</span><b id="time-asr">--:--</b><div class="iqamah-badge">قامەت: +١٠ خولەک</div>
+            </div>
+            <div class="prayer-card glass-panel" id="p5" data-time="" data-name="ئێوارە" data-wait="5">
+                <span>ئێوارە</span><b id="time-maghrib">--:--</b><div class="iqamah-badge">قامەت: +٥ خولەک</div>
+            </div>
+            <div class="prayer-card glass-panel" id="p6" data-time="" data-name="عیشا" data-wait="10">
+                <span>خەوتن</span><b id="time-isha">--:--</b><div class="iqamah-badge">قامەت: +١٠ خولەک</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

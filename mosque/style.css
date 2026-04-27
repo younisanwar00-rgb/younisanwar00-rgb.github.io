@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap');
+
+:root {
+    --gold: #fbbf24;
+    --gold-glow: rgba(251, 191, 36, 0.6);
+    --text-main: #f8fafc;
+    --glass-bg: rgba(0, 0, 0, 0.35);
+    --glass-border: rgba(255, 255, 255, 0.15);
+}
+
+@keyframes bg-animate {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body, html {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden; 
+    font-family: 'Segoe UI', Tahoma, sans-serif; 
+    color: var(--text-main);
+    background: linear-gradient(-45deg, #022c22, #064e3b, #0f766e, #042f2e);
+    background-size: 400% 400%;
+    animation: bg-animate 25s ease infinite;
+    transition: filter 2s ease;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+body.dim-mode { filter: brightness(0.25); }
+body.adhan-mode { background: linear-gradient(-45deg, #92400e, #451a03, #b45309, #78350f); }
+
+#friday-banner {
+    width: 100%; background: linear-gradient(90deg, #d97706, #fbbf24, #d97706);
+    color: #000; text-align: center; font-size: 1.6rem; font-weight: bold;
+    padding: 10px 0; display: none; z-index: 50;
+}
+#friday-banner.active { display: block; animation: slideDown 1s ease; }
+@keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
+/* شاشەی قامەت و ئاگادارکردنەوەی مۆبایل پێکەوە */
+#iqamah-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.92); z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
+}
+#iqamah-overlay.active { opacity: 1; pointer-events: auto; }
+
+.iqamah-flex-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    max-width: 1400px;
+}
+
+.iqamah-box {
+    background: radial-gradient(circle, #064e3b, #022c22); padding: 50px 80px; 
+    border-radius: 40px; text-align: center; color: white; border: 4px solid var(--gold);
+    box-shadow: 0 0 100px rgba(16, 185, 129, 0.5);
+    flex: 1;
+}
+.iqamah-box h2 { font-size: 4rem; color: #fff; margin: 0 0 20px 0; }
+#iqamah-large-timer { font-size: 13rem; font-weight: bold; font-family: monospace; line-height: 1; color: var(--gold); text-shadow: 0 0 30px var(--gold-glow);}
+
+.silence-box {
+    background: linear-gradient(135deg, #991b1b, #7f1d1d); padding: 50px 80px; 
+    border-radius: 40px; text-align: center; color: white; border: 4px solid var(--gold);
+    box-shadow: 0 0 80px rgba(220, 38, 38, 0.5);
+    flex: 1;
+}
+.icon-phone { font-size: 8rem; margin-bottom: 20px; animation: shake 2s infinite; }
+.silence-box h1 { font-size: 3.5rem; margin: 0 0 10px 0; font-weight: bold;}
+.silence-box p { font-size: 2rem; opacity: 0.9; margin: 0;}
+
+@keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+    75% { transform: rotate(-15deg); }
+}
+
+/* زیکرەکانی دوای نوێژ */
+#post-azkar-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(2, 44, 34, 0.96); z-index: 950;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; pointer-events: none; transition: opacity 1s ease;
+}
+#post-azkar-overlay.active { opacity: 1; pointer-events: auto; }
+.post-azkar-box { text-align: center; width: 95%; max-width: 1600px; }
+.post-azkar-box h2 { font-size: 3.5rem; color: var(--gold); margin-bottom: 20px; text-shadow: 0 2px 15px rgba(0,0,0,0.6); }
+
+/* دیزاینی نوێی خشتەی زیکرەکان */
+.azkar-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.zikr-item {
+    background: rgba(0, 0, 0, 0.4); padding: 15px 25px; border-radius: 20px;
+    border: 1px solid rgba(251, 191, 36, 0.3); font-size: 2.2rem; line-height: 1.6;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3); display: flex; flex-direction: column; justify-content: center;
+}
+.zikr-item b { color: var(--gold); display: block; font-size: 2.2rem; margin-bottom: 5px; }
+.zikr-item.full-width { grid-column: span 2; padding: 15px 30px; }
+.quranic-text { font-family: 'Amiri', serif; line-height: 1.6; font-size: 2.1rem; color: #34d399; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+.zikr-note { font-family: 'Segoe UI', Tahoma, sans-serif; font-size: 1.4rem; color: var(--gold); display: block; margin-top: 10px; opacity: 0.9;}
+
+.main-container {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: space-between; height: 100vh; padding: 20px;
+    box-sizing: border-box;
+}
+
+.top-bar { width: 100%; text-align: center; padding: 15px; border-radius: 20px; }
+#zikr-text {
+    font-family: 'Amiri', serif; font-size: 2.5rem; font-weight: bold;
+    color: var(--gold); transition: opacity 0.8s; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.middle-section {
+    display: flex; align-items: stretch; justify-content: space-between;
+    gap: 20px; width: 100%; flex: 1; margin: 20px 0;
+}
+
+.side-panel { flex: 1; border-radius: 25px; padding: 25px; display: flex; flex-direction: column; }
+.side-panel h2 {
+    color: var(--gold); text-align: center; font-size: 1.6rem;
+    margin-top: 0; border-bottom: 2px solid rgba(251, 191, 36, 0.3); 
+    padding-bottom: 12px;
+}
+
+.q-arabic { font-family: 'Amiri', serif; font-size: 2.3rem; color: #34d399; margin-bottom: 15px; text-align: center; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+.q-kurdish, .h-text { font-size: 1.4rem; line-height: 1.8; text-align: justify;}
+.q-kurdish { color: #e2e8f0; text-align: center;}
+#quran-content, #hadith-content { transition: opacity 0.8s; flex: 1; display: flex; flex-direction: column; justify-content: center;}
+
+.divider { height: 1px; background: rgba(255,255,255,0.2); margin: 20px 0; }
+.murdū-steps { font-size: 1.3rem; line-height: 2; }
+.murdū-steps b { color: var(--gold); }
+
+.dua-murdu {
+    display: block;
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: #34d399;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+#asma-text { font-family: 'Amiri', serif; font-size: 4.5rem; color: var(--gold); text-align: center; transition: opacity 0.8s; text-shadow: 0 0 20px var(--gold-glow);}
+
+.info-panel {
+    flex: 1.6; text-align: center; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; border-radius: 25px;
+    position: relative;
+}
+
+/* لێرەدا پلەی گەرمی براوەتە لای ڕاست */
+.weather-badge {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    left: auto;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 1.8rem;
+    color: var(--gold);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.clock-wrapper { 
+    display: flex; 
+    align-items: baseline; 
+    justify-content: center; 
+    margin-bottom: 15px;
+    direction: ltr; /* ئەمە وا دەکات چرکەکان بکەونە لای ڕاست */
+}
+#clock { font-size: 13rem; font-weight: bold; margin: 0; line-height: 1; text-shadow: 0 5px 30px rgba(0, 0, 0, 0.5); letter-spacing: -3px;}
+#seconds-display { font-size: 4rem; color: var(--gold); font-weight: bold; margin-left: 5px;}
+
+.countdown-container {
+    background: rgba(0,0,0,0.5); padding: 12px 35px; border-radius: 50px;
+    font-size: 2rem; color: #fff; margin-bottom: 25px; border: 1px solid var(--glass-border);
+    transition: all 0.5s ease;
+}
+.glow-text { color: var(--gold); text-shadow: 0 0 10px var(--gold-glow); }
+#countdown-timer { color: var(--gold); font-weight: bold; font-family: monospace; font-size: 2.5rem; margin-right: 10px;}
+
+.day-badge {
+    font-family: 'Amiri', serif;
+    font-size: 2.3rem;
+    color: var(--gold);
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    padding: 5px 30px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px var(--gold-glow);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    animation: float-pulse 4s ease-in-out infinite;
+}
+
+@keyframes float-pulse {
+    0%, 100% { transform: translateY(0); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    50% { transform: translateY(-6px); box-shadow: 0 8px 20px rgba(251, 191, 36, 0.3); }
+}
+
+.dates { font-size: 2.2rem; color: #fff; line-height: 1.8; text-shadow: 0 2px 10px rgba(0,0,0,0.5);}
+.dates #hijri { color: #34d399; font-weight: bold; font-family: 'Amiri', serif; font-size: 2.6rem;}
+
+.gregorian-date { 
+    font-family: 'Segoe UI', Arial, sans-serif; 
+    font-size: 1.8rem; 
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    opacity: 0.95;
+}
+
+.kurdish-date {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--gold);
+    margin-top: 5px;
+    display: block;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+
+.prayer-times { display: flex; gap: 15px; width: 100%; }
+.prayer-card { 
+    flex: 1; text-align: center; padding: 20px 10px; border-radius: 25px; 
+    transition: all 0.4s ease; position: relative; overflow: hidden;
+}
+.prayer-card span { font-size: 1.6rem; opacity: 0.9; }
+.prayer-card b { display: block; font-size: 3.8rem; margin: 10px 0; font-weight: bold; text-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+
+.iqamah-badge {
+    background: rgba(251, 191, 36, 0.15); border: 1px solid var(--gold);
+    color: var(--gold); font-size: 1.1rem; padding: 5px 10px; border-radius: 12px;
+    display: inline-block; font-weight: bold;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); }
+    50% { box-shadow: 0 0 35px rgba(251, 191, 36, 0.6); }
+    100% { box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); }
+}
+
+.prayer-card.active { 
+    border-color: var(--gold); background: rgba(0, 0, 0, 0.6); 
+    transform: translateY(-10px); animation: pulse-glow 2s infinite;
+}
+.prayer-card.active b, .prayer-card.active span { color: var(--gold); }
+.prayer-card.active .iqamah-badge { background: var(--gold); color: #000; }
